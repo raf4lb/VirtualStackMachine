@@ -1,0 +1,37 @@
+; Calculate val power exp
+
+VAR exp
+VAR count
+VAR val
+
+.main
+  PSHL 2
+  POP $val
+  PSHL 3
+  POP $exp
+  PSHL 0
+  POP $count
+  PSHL 1
+
+.multiply
+  PSH $val
+  MUL
+  CALL .incr_count
+  JE $exp
+  JMP .pop_count
+  CALL .print_result
+
+.incr_count
+  PSH $count
+  PSHL 1
+  ADD
+  RET
+  
+.print_result
+  POP $count
+  TOP
+  HLT
+  
+.pop_count
+  POP $count
+  JMP .multiply

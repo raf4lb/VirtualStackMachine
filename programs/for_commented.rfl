@@ -1,0 +1,30 @@
+; For example
+; int i
+; int max = 10
+; for i = 0; i < max; i++
+;   print i
+
+VAR i              ; aloca memoria para o inicio do for (i)
+VAR max            ; aloca memoria para o maximo do for (max)
+VAR inc            ; aloca memoria para o incremento do for (inc)
+
+.main              ; funcao main
+  PSHL 0           ; push o valor 0 para a stack
+  POP $i           ; pop o valor do topo da stack (0) e guarda na variavel i
+  PSHL 10          ; push o valor 10 para a stack
+  POP $max         ; pop o valor do topo da stack (10) e guarda na variavel max
+  PSHL 1           ; push o valor 1 para a stack
+  POP $inc         ; pop o valor do topo da stack (1) e guarda na variavel inc
+  PSH $i           ; push o valor de i para a stack
+
+.for               ; declaracao do for
+  CALL .print      ; chama a funcao print
+  PSH $inc         ; push o valor do incremento para a stack
+  ADD              ; soma os dois ultimos valores da stack e guarda no topo da stack
+  JL $max          ; salta uma linha se o valor do topo da stack for menor que max
+  HLT              ; se for maior, encerra o programa
+  JMP .for         ; se for menor, salta para .for
+
+.print             ; declaracao da funcao print
+  TOP              ; imprime o valor do topo da stack
+  RET              ; retorna para o fluxo do programa
