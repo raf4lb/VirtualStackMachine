@@ -4,16 +4,16 @@ VAR MIN
 VAR MAX
 
 .main
-  PSH 0
+  PSHL 0
   POP $MIN
-  PSH 10
+  PSHL 10
   POP $MAX
-  PSH 0
+  PSHL 0
   TOP
   JMP .incr
 
 .incr
-  PSH 1
+  PSHL 1
   ADD
   TOP
   JGE $MAX
@@ -21,7 +21,7 @@ VAR MAX
   JMP .decr
 
 .decr
-  PSH 1
+  PSHL 1
   SUB
   TOP
   JLE $MIN

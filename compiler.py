@@ -68,8 +68,8 @@ def compile_rfl(filename: str, debug=False) -> list[int]:
   with open(filename) as p:
     lines = p.read().splitlines()
     lines = remove_comments(lines)
-    lines = remove_blank_lines(lines)
     strip(lines)
+    lines = remove_blank_lines(lines)
     lines = build_vars(lines)
     lines = build_jumps(lines)
     if debug:
