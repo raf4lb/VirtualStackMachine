@@ -15,7 +15,7 @@ if __name__ == "__main__":
     )
 
     # complile program in file "programs/for.rfl"
-    program = compile_rfl("programs/for_commented.rfl", debug=False)
+    program = compile_rfl("programs/blink_led.rfl", debug=False)
 
     # run the program
     processor.run(program, debug=False)
