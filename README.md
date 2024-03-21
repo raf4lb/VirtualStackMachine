@@ -1,53 +1,54 @@
 # Simple Virtual Stack Machine
-Disclamer: despite being a project that works, it is still under development to add new features and improvements.
+**Disclaimer**: despite being a project that works, it is still under development to add new features and improvements.
 
 ### Description
 This is a simple virtual stack machine implemented in pure python. It has its own assembly language, compiler and the current instructions supported are:
 
 ##### Stack operations
 - Push literal: push a value to the stack;
--- PUSHL <value>
+  - PUSHL [value]
 - Push: push a value from an address to the stack;
--- PUSH <address>
+  - PUSH [address]
 - Pop: pop a value from the stack and stores it in the address;
--- POP <address>
+  - POP [address]
 - Top: print the value stored at the top of the stack;
--- TOP
+  - TOP
 ##### Arithmetic operations
 - Addition: add the two last values of the stack and stores the result at the top of the stack;
--- ADD
+  - ADD
 - Subtracttion: subtract the two last values of the stack and stores the result at the top of the stack;
--- SUB
+  - SUB
 - Multiplication: multiply the two last values of the stack and stores the result at the top of the stack;
--- MUL
+  - MUL
 - Division: divide the two last values of the stack and stores the result at the top of the stack;
--- DIV
+  - DIV
 ##### Loop and Branching operations
 - Jump (address): jump to address;
--- JMP <address>
+  - JMP [address]
 - Jump equal (address): jump to the next line;
--- JE <address>
+  - JE [address]
 - Jump less (address): jump to the next line if the value of the top of the stack is less than the given address value;
--- JL <address>
+  - JL [address]
 - Jump greater (address): jump to the next line if the value of the top of the stack is greater than the given address value;
--- JG <address>
+  - JG [address]
 - Jump less equal (address): jump to the next line if the value of the top of the stack is less or equal to the given address value;
--- JLE <address>
+  - JLE [address]
 - Jump greater equal (address): jump to the next line if the value of the top of the stack is greater or equal to the given address value;
--- JGE <address>
+  - JGE [address]
 - Call (address): call routine at address;
--- CALL <address>
+  - CALL [address]
 - Return: return to the program flow;
--- RET
+  - RET
 ##### Other instructions
 - Variable declaration: variables can be used in push (PSH) pop (POP) instructions;
---VAR <variable_name>
+  - VAR [variable_name]
 - Label declaration: labels can be used in jump (JMP) instruction;
--- .<label_name>
+  -  .[label_name]
 - Halt: end the program;
--- HLT
+  - HLT
 - Delay (milliseconds): wait for milliseconds;
--- DLY <milliseconds>
+  - DLY [milliseconds]
+
 ### Requirements
  - Python 3.10;
  
