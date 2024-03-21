@@ -1,29 +1,49 @@
 ; Count from 0 to 10 and from 10 to 0
+;
+; Pseudo code:
+; int MIN
+; int MAX 
+; MIN = 0
+; MAX = 10
+; int i
+; for (i = MIN; i <= MAX; i++){
+;     print i
+; }
+; for (i = MAX; i >= MIN; i--){
+;     print i
+; }
+;
+; Output: 0 1 2 3 4 5 6 7 8 9 10 9 8 7 6 5 4 3 2 1 0
 
-VAR MIN
-VAR MAX
+; Declaring variables
+VAR MIN         ; allocate memory for the start variable of the count (MIN)
+VAR MAX         ; allocate memory for the maximum variable of the count (MAX)
 
-.main
-  PSHL 0
-  POP $MIN
-  PSHL 10
-  POP $MAX
-  PSHL 0
-  TOP
-  JMP .incr
+.main           ; main routine
+  ; assigning 0 to MIN variable
+  PSHL 0        ; push literal 0 to the stack 
+  POP $MIN      ; pop the top of the stack (0) and stores it in the MIN variable
+  
+  ; assigning 10 to MAX variable
+  PSHL 10       ; push literal 10 to the stack 
+  POP $MAX      ; pop the top of the stack (10) and stores it in the MAX variable
+  
+  PSHL 0        ; push literal 0 to the stack
+  TOP           ; print the top of the stack
+  JMP .incr     ; jump to the .incr line
 
-.incr
-  PSHL 1
-  ADD
-  TOP
-  JGE $MAX
-  JMP .incr
-  JMP .decr
+.incr           ; increment routine
+  PSHL 1        ; push literal 1 to the stack 
+  ADD           ; add the two last values of the stack and stores the result at the top of the stack
+  TOP           ; print the top of the stack
+  JGE $MAX      ; jump to the next line if the value of the top of the stack is greater or equal to the MAX variable value
+  JMP .incr     ; if it is less, jump to .incr line (keep incrementing)
+  JMP .decr     ; if it is greater or equal, jump to .decr line (start decrementing)
 
-.decr
-  PSHL 1
-  SUB
-  TOP
-  JLE $MIN
-  JMP .decr
-  HLT
+.decr           ; decrement routine
+  PSHL 1        ; push literal 1 to the stack 
+  SUB           ; subtract the two last values of the stack and stores the result at the top of the stack
+  TOP           ; print the top of the stack
+  JLE $MIN      ; jump to the next line if the value of the top of the stack is less or equal to the MIN variable value
+  JMP .decr     ; if it is greater, jump to .decr line (keep decrementing)
+  HLT           ; if it is less or equal, end the program

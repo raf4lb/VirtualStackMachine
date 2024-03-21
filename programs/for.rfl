@@ -1,30 +1,44 @@
 ; For example
+;
+; Pseudo code:
 ; int i
-; int max = 10
-; for i = 0; i < max; i++
-;   print i
+; int max
+; i = 0
+; max = 10
+; for (i = 0; i < max; i++){
+;     print i
+; }
+;
+; Output: 0 1 2 3 4 5 6 7 8 9
 
-VAR i
-VAR max
-VAR inc
+; Declaring variables
+VAR i              ; allocate memory for the inicial index variable of the for (i)
+VAR max            ; allocate memory for the maximum index variable of the for (max)
+VAR inc            ; allocate memory for the increment variable of for index (inc)
 
-.main
-  PSHL 0
-  POP $i
-  PSHL 10
-  POP $max
-  PSHL 1
-  POP $inc
-  PSH $i
+.main              ; main routine
+  ; assigning 0 to i variable 
+  PSHL 0           ; push literal 0 to the stack
+  POP $i           ; pop the top of the stack (0) and stores it in the i variable
   
-.for
-  CALL .print
-  PSH $inc
-  ADD
-  JL $max
-  HLT
-  JMP .for
+  ; assigning 10 to max variable
+  PSHL 10          ; push literal 10 to the stack
+  POP $max         ; pop the top of the stack (10) and stores it in the max variable
+  
+  ; assigning 1 to inc variable
+  PSHL 1           ; push literal 1 to the stack
+  POP $inc         ; pop the top of the stack (1) and stores it in the inc variable
+  
+  PSH $i           ; push i variable value to the stack
 
-.print
-  TOP
-  RET
+.for               ; for routine
+  CALL .print      ; call print routine
+  PSH $inc         ; push o valor do incremento para a stack
+  ADD              ; add the two last values of the stack and stores the result at the top of the stack
+  JL $max          ; jump if the value of the top of the stack is less than the max variable value
+  HLT              ; if max variable value if bigger, end the program
+  JMP .for         ; if its less, jump to the .for line
+
+.print             ; print routine
+  TOP              ; print the top of the stack value
+  RET              ; return to the caller line

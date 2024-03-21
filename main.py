@@ -1,3 +1,4 @@
+import sys
 from compiler import compile_rfl
 from memory import Memory, Stack
 from processor import Processor
@@ -8,14 +9,17 @@ if __name__ == "__main__":
     call_stack = Stack(8)  # create a call stack with 8 bytes
 
     # create a processor with the memory, stack and call stack
-    processor = Processor(
-        memory=memory,
-        stack=stack,
-        call_stack=call_stack
-    )
+    processor = Processor(memory=memory, stack=stack, call_stack=call_stack)
 
-    # complile program in file "programs/for.rfl"
-    program = compile_rfl("programs/blink_led.rfl", debug=False)
+    try:
+        rfl_file = sys.argv[1]
+    except IndexError:
+        print(
+            "Error: the program path should be passed. Ex. python main.py 'program.rfl'"
+        )
+    else:
+        # compile program file
+        program = compile_rfl(rfl_file, debug=False)
 
-    # run the program
-    processor.run(program, debug=False)
+        # run the program
+        processor.run(program, debug=False)

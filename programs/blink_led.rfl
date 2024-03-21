@@ -1,10 +1,22 @@
-.loop
-    PSHL 1
-    TOP
-    POP 0
-    DLY 1000
-    PSHL 0
-    TOP
-    DLY 1000
-    POP 0
-    JMP .loop
+; Simulate a led blinking for every second
+;
+; Pseudo code:
+; while (true){
+;     print 1
+;     delay 1s
+;     print 0
+;     delay 1s
+; }
+;
+; Output: 1 0 1 0 1 0 1 0 ...
+
+.loop               ; loop routine
+    PSHL 1          ; push literal 1 to the stack
+    TOP             ; print the top of the stack
+    POP 0           ; pop the top of the stack and stores it in the 0x0 address
+    DLY 1000        ; wait 1000 ms (1s)
+    PSHL 0          ; push literal 0 to the stack
+    TOP             ; print the top of the stack
+    DLY 1000        ; wait 1000 ms (1s)
+    POP 0           ; pop the top of the stack and stores it in the 0x0 address
+    JMP .loop       ; jump to the .loop line

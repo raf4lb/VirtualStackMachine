@@ -1,37 +1,50 @@
 ; Calculate val power exp
+;
+; Pseudo code: 
+; int exp
+; int val
+; print pow(val, exp)
+;
+; Output for val=2 and exp=3: 8
 
-VAR exp
-VAR count
-VAR val
+VAR exp                 ; allocate memory for the exponetial variable of the for (exp)
+VAR count               ; allocate memory for the count variable of the for (count)
+VAR val                 ; allocate memory for the inicial index variable of the for (i)
 
 .main
-  PSHL 2
-  POP $val
-  PSHL 3
-  POP $exp
-  PSHL 0
-  POP $count
-  PSHL 1
+  ; assigning 2 to val variable 
+  PSHL 2                ; push literal 2 to the stack
+  POP $val              ; pop the top of the stack (2) and stores it in the val variable
 
-.multiply
-  PSH $val
-  MUL
-  CALL .incr_count
-  JE $exp
-  JMP .pop_count
-  CALL .print_result
+  ; assigning 3 to exp variable 
+  PSHL 3                ; push literal 3 to the stack
+  POP $exp              ; pop the top of the stack (3) and stores it in the exp variable
+  
+  ; assigning 0 to count variable
+  PSHL 0                ; push literal 0 to the stack
+  POP $count            ; pop the top of the stack (0) and stores it in the count variable
+  
+  PSHL 1                ; push literal 1 to the stack
+
+.multiply               ; multiply routine
+  PSH $val              ; push the value of the val variable to the stack
+  MUL                   ; multiply the two last values of the stack and stores the result at the top of the stack
+  CALL .incr_count      ; call .incr_count routine
+  JE $exp               ; jump if the value of the top of the stack is equal to the exp variable value
+  JMP .pop_count        ; if it is not equal, jump to .pop_count line
+  CALL .print_result    ; if it is, call .print_result routine
 
 .incr_count
-  PSH $count
-  PSHL 1
-  ADD
-  RET
+  PSH $count            ; push the value of the count variable to the stack
+  PSHL 1                ; push literal 1 to the stack
+  ADD                   ; add the two last values of the stack and stores the result at the top of the stack
+  RET                   ; return to the caller line
   
-.print_result
-  POP $count
-  TOP
-  HLT
+.print_result           ; print result routine
+  POP $count            ; pop the top of the stack and stores it in the count variable 
+  TOP                   ; print the top of the stack
+  HLT                   ; end program
   
-.pop_count
-  POP $count
-  JMP .multiply
+.pop_count              ; pop count routine
+  POP $count            ; pop the top of the stack and stores it in the count variable 
+  JMP .multiply         ; jump to .multiply line
