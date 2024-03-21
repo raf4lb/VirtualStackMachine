@@ -25,7 +25,7 @@ This is a simple virtual stack machine implemented in pure python. It has its ow
 ##### Loop and Branching operations
 - Jump (address): jump to address;
   - JMP [address]
-- Jump equal (address): jump to the next line;
+- Jump equal (address): jump to the next line if the value of the top of the stack is equal to the given address value;
   - JE [address]
 - Jump less (address): jump to the next line if the value of the top of the stack is less than the given address value;
   - JL [address]
