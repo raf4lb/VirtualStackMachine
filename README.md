@@ -69,10 +69,10 @@ python main.py programs/for.rfl
 - ```programs``` folder contains program examples in the VM assembly code;
 - ```alu.py``` contains the class that represents the arithmetic logic unit;
 - ```compiler.py``` contains the compiler responsible for converting assembly code to VM bytecode;
-- ```isa.py``` contains all VM instructions that can be easily extented using the ```Instruction``` abstract class
-- ```main.py``` contains the main script to compile and run the VM code;
+- ```isa.py``` contains all VM instructions that can be easily extented using the ```Instruction``` abstract class;
+- ```main.py``` contains the main script to compile and run the VM bytecode;
 - ```memory.py``` contains classes related to memory elements like memory and stack;
-- ```processor.py``` contains the class the represents the processor.
+- ```processor.py``` contains the class that represents the processor.
 
 ### Related Projects
 There is an implementation of this VM in C, so the same assembly code can be executed even in baremetal microcontrollers like arduino with support to PIN manipulations (see atmega328p branch):
