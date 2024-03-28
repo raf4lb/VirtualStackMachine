@@ -6,11 +6,11 @@ This is a simple virtual stack machine implemented in pure python. It has its ow
 
 ##### Stack operations
 - Push literal: push a value to the stack;
-  - PUSHL [value]
+  - PSHL [value]
 - Push: push a value from an address to the stack;
-  - PUSH [address]
+  - PSH [address] or $[variable_name]
 - Pop: pop a value from the stack and stores it in the address;
-  - POP [address]
+  - POP [address] or $[variable_name]
 - Top: print the value stored at the top of the stack;
   - TOP
 ##### Arithmetic operations
@@ -24,19 +24,19 @@ This is a simple virtual stack machine implemented in pure python. It has its ow
   - DIV
 ##### Loop and Branching operations
 - Jump (address): jump to address;
-  - JMP [address]
+  - JMP [address] or .[label_name]
 - Jump equal (address): jump to the next line if the value of the top of the stack is equal to the given address value;
-  - JE [address]
+  - JE [address] or $[variable_name]
 - Jump less (address): jump to the next line if the value of the top of the stack is less than the given address value;
-  - JL [address]
+  - JL [address] or $[variable_name]
 - Jump greater (address): jump to the next line if the value of the top of the stack is greater than the given address value;
-  - JG [address]
+  - JG [address] or $[variable_name]
 - Jump less equal (address): jump to the next line if the value of the top of the stack is less or equal to the given address value;
-  - JLE [address]
+  - JLE [address] or $[variable_name]
 - Jump greater equal (address): jump to the next line if the value of the top of the stack is greater or equal to the given address value;
-  - JGE [address]
+  - JGE [address] or $[variable_name]
 - Call (address): call routine at address;
-  - CALL [address]
+  - CALL [address] or .[label_name]
 - Return: return to the program flow;
   - RET
 ##### Other instructions
